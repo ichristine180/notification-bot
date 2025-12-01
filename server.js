@@ -17,9 +17,6 @@ const client = new Client({
   }),
   puppeteer: {
     headless: true,
-    executablePath: process.platform === "darwin"
-      ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-      : "/usr/bin/google-chrome-stable",
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
@@ -27,6 +24,7 @@ const client = new Client({
       "--disable-accelerated-2d-canvas",
       "--no-first-run",
       "--no-zygote",
+      "--single-process",
       "--disable-gpu",
     ],
   },
