@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // WhatsApp Client with session persistence
 const client = new Client({
   authStrategy: new LocalAuth({
-    clientId: "whatsapp-bot",
+    clientId: "notification-bot-v2",
     dataPath: "./sessions",
   }),
   puppeteer: {
@@ -28,10 +28,9 @@ const client = new Client({
       "--disable-gpu",
     ],
   },
-  webVersionCache: {
-    type: "remote",
-    remotePath: "https://raw.githubusercontent.com/AmeUr56/whatsapp-web-versions/main/html/2.3000.1017531498-alpha.html",
-  },
+  // Increase timeouts to prevent premature disconnection
+  authTimeoutMs: 60000,
+  qrMaxRetries: 5,
 });
 
 // Bot status
