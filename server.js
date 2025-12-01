@@ -49,13 +49,17 @@ client.on("loading_screen", (percent, message) => {
 });
 
 client.on("ready", () => {
-  console.log("WhatsApp Client is ready!");
-  isReady = true;
-  qrCodeData = null;
+  if (!isReady) {
+    console.log("WhatsApp Client is ready!");
+    isReady = true;
+    qrCodeData = null;
+  }
 });
 
 client.on("authenticated", () => {
-  console.log("WhatsApp Client authenticated successfully");
+  if (!isReady) {
+    console.log("WhatsApp Client authenticated successfully");
+  }
 });
 
 client.on("auth_failure", (msg) => {
